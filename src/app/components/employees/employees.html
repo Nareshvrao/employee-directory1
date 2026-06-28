@@ -1,0 +1,100 @@
+<div #topSection></div>
+
+<h2>Employees</h2>
+
+  @if (loading()) {
+  <p>Loading...</p>
+  }
+
+  @if (errorMessage()) {
+    <p>{{ errorMessage() }}</p>
+  }
+
+  <li>
+  <button (click)="Login()">
+    Login Page
+  </button>
+
+  <button (click)="Logout()">
+    Logout
+  </button>
+
+  <button (click)="scrollTop()">
+  Top
+</button>
+<ng-container #messageContainer>
+</ng-container>
+</li>
+
+<form [formGroup]="employeeForm">
+
+  <input
+    type="text"
+    formControlName="name"
+    placeholder="Name",
+    formControlName="name"
+  />
+
+  @if (employeeForm.get('name')?.invalid &&
+     employeeForm.get('name')?.touched) {
+  <div>
+    Name is required
+  </div>
+  }
+
+  <input
+    type="text"
+    formControlName="role"
+    placeholder="Role"
+  />
+  @if (employeeForm.get('role')?.invalid &&
+     employeeForm.get('role')?.touched) {
+  <div>
+    Role is required
+  </div>}
+
+  <button
+  type="button"
+  [disabled]="employeeForm.invalid"
+  (click)="addOrUpdate()"
+>
+  {{ editId ? 'Update' : 'Add' }}
+</button>
+
+</form>
+
+<hr />
+
+<input
+  type="text"
+  placeholder="Search employee"
+  (input)="onSearch($event)"
+/>
+
+<ul>
+
+  @for (emp of (employees$ | async); track emp.id) {
+
+  <li>
+    <app-employee-card>
+
+      <h3>{{ emp.name }}</h3>
+
+      <p>{{ emp.role }}</p>
+
+      <button (click)="goToEdit(emp.id)">
+        Edit
+      </button>
+
+      <button (click)="delete(emp.id)">
+        Delete
+      </button>
+
+    </app-employee-card>
+
+
+  </li>
+}
+
+
+
