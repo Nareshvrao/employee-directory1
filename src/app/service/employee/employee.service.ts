@@ -21,25 +21,6 @@ export class EmployeeService {
       return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-//   getEmployees() {
-
-//   return this.http.get<any[]>(this.apiUrl)
-//     .pipe(
-
-//       map(employees => {
-
-//         return employees.map(emp => ({
-//           ...emp,
-//           name: emp.name.toUpperCase()
-//         })
-
-//       );
-
-//       })
-
-//     );
-// }
-
   getEmployees() {
     console.log("key");
     return this.http.get<any[]>(this.apiUrl)
