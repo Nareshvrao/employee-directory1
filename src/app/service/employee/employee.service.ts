@@ -20,6 +20,8 @@ export class EmployeeService {
 
   getEmployeeById(id: string) {
 
+    // Make an HTTP GET request to fetch employee data by ID
+
       return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
