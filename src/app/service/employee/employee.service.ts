@@ -14,6 +14,8 @@ export class EmployeeService {
 
   employees$ = this.employeesSubject.asObservable();
 
+  // Inject HttpClient to make HTTP requests
+
   constructor(private http: HttpClient) {}
 
   getEmployeeById(id: string) {
